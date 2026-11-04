@@ -15,6 +15,10 @@ El servicio de Railway está conectado a este repositorio: cada `push` a `main` 
 - `?para=Familia%20Pérez`: muestra el nombre del invitado en la portada y lo deja escrito al confirmar.
 - `?para=Familia%20Pérez&pases=4`: además limita cuántas personas pueden confirmar.
 
+## Enviar las invitaciones
+
+`/enviar.html` es una página solo para los novios: se pega la lista de invitados (uno por línea, opcionalmente `Nombre, celular, pases`) y arma para cada uno el mensaje con su link personalizado y un botón que abre WhatsApp con el texto listo. La lista y el avance se guardan solo en el celular donde se usa.
+
 ## Datos que se editan seguido
 
 Al inicio del `<script>` de `index.html`, en el objeto `BODA`: fecha y hora, lugar, dirección y los números de WhatsApp de los novios.
