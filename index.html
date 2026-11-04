@@ -376,6 +376,15 @@ a.etiqueta:hover{transform:rotate(-4deg)}
 .sonando .musica .i-mute{display:none}.sonando .musica .i-nota{display:block}
 @keyframes gira{to{transform:rotate(360deg)}}
 
+/* ---------- aviso para deslizar ---------- */
+.desliza{position:fixed;left:50%;bottom:calc(var(--u)*6 + env(safe-area-inset-bottom,0px));z-index:35;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:9px 20px 6px;border-radius:999px;background:rgba(251,246,241,.94);box-shadow:0 4px 16px rgba(110,50,20,.28);border:1px solid rgba(168,80,42,.25);
+  color:var(--terra-tx);font-family:var(--f-body);font-size:max(10.5px,calc(var(--u)*2.6));letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;
+  opacity:0;transform:translate(-50%,10px);transition:opacity .5s ease,transform .5s ease;pointer-events:none}
+.desliza.vis{opacity:1;transform:translate(-50%,0)}
+.desliza svg{width:24px;height:24px;animation:baja 1.3s ease-in-out infinite}
+@keyframes baja{0%,100%{transform:translateY(-3px);opacity:.55}50%{transform:translateY(4px);opacity:1}}
+
 /* ---------- ventana de colores y aviso ---------- */
 .modal{position:fixed;inset:0;z-index:60;display:flex;overflow-y:auto;overscroll-behavior:contain;padding:16px;background:rgba(70,32,14,.55);opacity:0;transition:opacity .25s}
 .modal.vis{opacity:1}
@@ -588,11 +597,11 @@ a.etiqueta:hover{transform:rotate(-4deg)}
   <section class="s-vest" aria-label="Código de vestimenta">
     <div class="caja-terra vest-caja" data-r="izq">
       <h2>FORMAL</h2>
-      <p>Les dejamos una sugerencia de colores para asistir a nuestra boda.</p>
-      <button class="btn btn-claro" type="button" data-modal="modal-colores">Ver aquí</button>
+      <p>Les pedimos evitar algunos colores para asistir a nuestra boda.</p>
+      <button class="btn btn-claro" type="button" data-modal="modal-colores">Ver colores</button>
     </div>
     <img class="deco flor-3" src="assets/anturio.webp" alt="" width="380" height="380" loading="lazy" data-r="flor">
-    <button class="etiqueta" type="button" data-modal="modal-colores" data-r="zoom" aria-label="Ver sugerencia de colores">
+    <button class="etiqueta" type="button" data-modal="modal-colores" data-r="zoom" aria-label="Ver los colores a evitar">
       <img src="assets/etiqueta.webp" alt="" width="300" height="409" loading="lazy"><span>Código<br>de<br>vestimenta</span>
     </button>
     <div class="torn vest-nota" data-r="der">
@@ -679,17 +688,8 @@ a.etiqueta:hover{transform:rotate(-4deg)}
 
 <div class="modal" id="modal-colores" role="dialog" aria-modal="true" aria-labelledby="mc-t" hidden>
   <div class="torn modal-card">
-    <h2 class="titulo" id="mc-t">Sugerencia de colores</h2>
+    <h2 class="titulo" id="mc-t">Colores a evitar</h2>
     <p class="sub">Código de vestimenta: <em>Formal</em></p>
-    <h3>Colores sugeridos</h3>
-    <div class="paleta">
-      <figure><span class="c" style="background:#b5643f"></span><figcaption>Terracota</figcaption></figure>
-      <figure><span class="c" style="background:#c4621f"></span><figcaption>Naranja quemado</figcaption></figure>
-      <figure><span class="c" style="background:#e8bea5"></span><figcaption>Durazno</figcaption></figure>
-      <figure><span class="c" style="background:#b97c66"></span><figcaption>Arcilla</figcaption></figure>
-      <figure><span class="c" style="background:#9caf88"></span><figcaption>Verde salvia</figcaption></figure>
-      <figure><span class="c" style="background:#a9a6a2"></span><figcaption>Gris perla</figcaption></figure>
-    </div>
     <h3>Mujeres, por favor evitar</h3>
     <div class="paleta no">
       <figure><span class="c" style="background:#fbfaf7"></span><figcaption>Blanco</figcaption></figure>
@@ -747,6 +747,11 @@ a.etiqueta:hover{transform:rotate(-4deg)}
     </dl>
     <button class="btn btn-ui modal-cerrar" type="button">Cerrar</button>
   </div>
+</div>
+
+<div class="desliza" id="desliza" aria-hidden="true" hidden>
+  <span>Desliza hacia abajo</span>
+  <svg viewBox="0 0 24 24"><path d="M6 6l6 6 6-6M6 12l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -910,6 +915,21 @@ a.etiqueta:hover{transform:rotate(-4deg)}
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
     pend.forEach(function (e) { io.observe(e); });
   }
+  var desliza = $('#desliza'), deslizaVisto = false;
+  function ocultarDesliza() {
+    if (desliza.hidden) return;
+    desliza.classList.remove('vis');
+    window.removeEventListener('scroll', alBajar);
+    setTimeout(function () { desliza.hidden = true; }, 500);
+  }
+  function alBajar() { if (window.scrollY > 60) ocultarDesliza(); }
+  function mostrarDesliza() {
+    if (deslizaVisto || window.scrollY > 60) return;
+    deslizaVisto = true;
+    desliza.hidden = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { desliza.classList.add('vis'); }); });
+    window.addEventListener('scroll', alBajar, { passive: true });
+  }
   function terminar() {
     principal.removeAttribute('inert');
     document.body.classList.remove('bloqueado');
@@ -951,7 +971,7 @@ a.etiqueta:hover{transform:rotate(-4deg)}
       { transform: fin + ' scale(1.06)', opacity: 0 }
     ], { duration: 1600, easing: 'cubic-bezier(.6,0,.25,1)', fill: 'forwards' });
     setTimeout(revelar, 1100);
-    a.onfinish = function () { hoja.remove(); portada.hidden = true; $('#musica').hidden = false; };
+    a.onfinish = function () { hoja.remove(); portada.hidden = true; $('#musica').hidden = false; setTimeout(mostrarDesliza, 900); };
   }
   function abrir() {
     if (abierto) return;
@@ -959,7 +979,7 @@ a.etiqueta:hover{transform:rotate(-4deg)}
     tocar();
     if (reduce || !document.body.animate) {
       portada.classList.add('saliendo'); terminar(); revelar();
-      setTimeout(function () { portada.hidden = true; $('#musica').hidden = false; }, reduce ? 30 : 900);
+      setTimeout(function () { portada.hidden = true; $('#musica').hidden = false; mostrarDesliza(); }, reduce ? 30 : 900);
       return;
     }
     $$('[data-r]').forEach(function (e) { e.classList.add('pre'); });
