@@ -9,8 +9,9 @@
 
 :{$PORT:8080} {
 	root * /srv
+	rewrite /invitacion /index.html
 	encode gzip
-	@html path / /index.html
+	@html path / /index.html /invitacion
 	header @html Cache-Control "no-cache"
 	header /assets/* Cache-Control "public, max-age=86400"
 	file_server
