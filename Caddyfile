@@ -1,0 +1,17 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		trusted_proxies static private_ranges
+	}
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode gzip
+	@html path / /index.html
+	header @html Cache-Control "no-cache"
+	header /assets/* Cache-Control "public, max-age=86400"
+	file_server
+}
