@@ -296,6 +296,19 @@ a.etiqueta:hover{transform:rotate(-4deg)}
 .sobre-ico{width:calc(var(--u)*11);height:calc(var(--u)*8);margin:calc(var(--u)*2) auto 0;color:#8a6a5a}
 .reg-sep{border:0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,80,42,.35),transparent);margin:calc(var(--u)*5.5) 0}
 .banco{font-size:calc(var(--u)*2.9);letter-spacing:.16em;margin-bottom:calc(var(--u)*3)}
+/* sobre de las cuentas */
+.sobre-cuentas{position:relative;display:block;width:calc(var(--u)*40);margin:calc(var(--u)*3.5) auto calc(var(--u)*2.5);animation:flota 3.2s ease-in-out infinite}
+.sobre-cuentas svg{display:block;width:100%;overflow:visible;filter:drop-shadow(0 calc(var(--u)*1) calc(var(--u)*1.6) rgba(110,45,15,.32))}
+.sobre-cuentas .sc-solapa{transform-box:fill-box;transform-origin:50% 0;transition:transform .5s cubic-bezier(.45,.05,.3,1) .15s}
+.sobre-cuentas.abierto .sc-solapa{transform:scaleY(-1)}
+.sobre-cuentas .sc-sello{position:absolute;width:24%;left:38%;top:44%;transition:transform .3s ease,opacity .3s ease}
+.sobre-cuentas.abierto .sc-sello{transform:scale(1.3) rotate(12deg);opacity:0}
+.sobre-cuentas.abierto{animation:none}
+@keyframes flota{50%{transform:translateY(calc(var(--u)*-1.2))}}
+.toca-sobre{font-size:max(10px,calc(var(--u)*2.5));letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
+.cuentas-card .datos{margin-bottom:calc(var(--u)*6)}
+.cuentas-card .datos dd span{font-size:max(15px,calc(var(--u)*3.6))}
+.cuentas-card .datos dt{font-size:max(10.5px,calc(var(--u)*2.5))}
 .datos{margin:0;display:grid;gap:calc(var(--u)*2.8)}
 .datos dt{font-size:max(9.5px,calc(var(--u)*2.4));letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-suave)}
 .datos dd{margin:calc(var(--u)*.4) 0 0;display:flex;align-items:center;justify-content:center;gap:calc(var(--u)*1.6)}
@@ -504,6 +517,7 @@ a.etiqueta:hover{transform:rotate(-4deg)}
       <div class="padres">
         <div><h3>Padres del novio</h3><p><span>Juan Fredy Saravia Napa</span><span>Lilia Rosario Ramos Córdoba</span></p></div>
         <div><h3>Padres de la novia</h3><p><span>Jesús Alfonso Valenzuela Flores</span><span>María Gladys del Rosario Maúrtua Alva</span></p></div>
+        <div><h3>Testigos</h3><p><span>Katherine Palomino Velásquez</span><span>Jefferson Pachas Trillo</span></p></div>
       </div>
       <p class="pareja" aria-label="Giuliana y Cristhian"><span class="p1">Giuliana</span><span class="pa">&amp;</span><span class="p2">Cristhian</span></p>
       <p class="honor">Tenemos el honor de invitarte<br>a nuestra boda civil.</p>
@@ -604,12 +618,11 @@ a.etiqueta:hover{transform:rotate(-4deg)}
         <hr class="reg-sep">
         <div class="reg-op">
           <h2 class="titulo">Transferencia</h2>
-          <p class="banco">INTERBANK</p>
-          <dl class="datos">
-            <div><dt>Cuenta Simple Soles</dt><dd><span>898 3513437759</span><button class="copiar" type="button" data-copiar="8983513437759" aria-label="Copiar número de cuenta"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
-            <div><dt>Cuenta interbancaria (CCI)</dt><dd><span>00389801351343775941</span><button class="copiar" type="button" data-copiar="00389801351343775941" aria-label="Copiar CCI"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
-            <div><dt>Plin</dt><dd><span>961 374 010</span><button class="copiar" type="button" data-copiar="961374010" aria-label="Copiar número de Plin"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
-          </dl>
+          <button class="sobre-cuentas" id="btn-cuentas" type="button" aria-label="Abrir el sobre para ver los datos de transferencia">
+            <svg viewBox="0 0 135 100" aria-hidden="true"><rect width="135" height="100" rx="1.2" fill="url(#gInterior)"/><path d="M0 0L67.5 54L0 100Z" fill="#b65d32"/><path d="M135 0L67.5 54L135 100Z" fill="#ac552d"/><path d="M0 100L67.5 47L135 100Z" fill="url(#gBolsillo)"/><g class="sc-solapa"><path d="M0 0H135L67.5 60Z" fill="url(#gSolapa)"/><path d="M0 0L67.5 60L135 0" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".6"/></g></svg>
+            <img class="sc-sello" src="assets/sello.webp" alt="" width="300" height="300" loading="lazy">
+          </button>
+          <p class="toca-sobre">Toca el sobre para ver nuestras cuentas</p>
         </div>
       </div>
     </div>
@@ -718,6 +731,21 @@ a.etiqueta:hover{transform:rotate(-4deg)}
       <a class="btn-wa" id="rsvp-enviar" href="https://wa.me/51961374010" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="wa-svg"><path d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.4 5 5.2-1.4A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-3.1.8.8-3-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.2z"/></svg>Enviar por WhatsApp</a>
       <p class="rsvp-num" id="rsvp-num">Se enviará al WhatsApp de Giuliana (+51 961 374 010)</p>
     </form>
+  </div>
+</div>
+
+<div class="modal" id="modal-cuentas" role="dialog" aria-modal="true" aria-labelledby="mk-t" hidden>
+  <div class="torn modal-card cuentas-card">
+    <button class="modal-x modal-cerrar" type="button" aria-label="Cerrar">&times;</button>
+    <h2 class="titulo" id="mk-t">Datos para transferencia</h2>
+    <p class="sub">Gracias por tu cariño y por acompañarnos.</p>
+    <p class="banco">INTERBANK</p>
+    <dl class="datos">
+      <div><dt>Cuenta Simple Soles</dt><dd><span>898 3513437759</span><button class="copiar" type="button" data-copiar="8983513437759" aria-label="Copiar número de cuenta"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
+      <div><dt>Cuenta interbancaria (CCI)</dt><dd><span>00389801351343775941</span><button class="copiar" type="button" data-copiar="00389801351343775941" aria-label="Copiar CCI"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
+      <div><dt>Plin</dt><dd><span>961 374 010</span><button class="copiar" type="button" data-copiar="961374010" aria-label="Copiar número de Plin"><svg class="i-cp"><use href="#i-copiar"/></svg><svg class="i-ok"><use href="#i-ok"/></svg></button></dd></div>
+    </dl>
+    <button class="btn btn-ui modal-cerrar" type="button">Cerrar</button>
   </div>
 </div>
 
@@ -950,8 +978,14 @@ a.etiqueta:hover{transform:rotate(-4deg)}
     requestAnimationFrame(function () { mo.classList.add('vis'); var t = mo.querySelector('.torn'); dibujarPapel(t, papeles.indexOf(t)); });
     $('.modal-cerrar', mo).focus();
   }
-  function cerrarModal(mo) { mo.classList.remove('vis'); document.body.classList.remove('bloqueado'); setTimeout(function () { mo.hidden = true; }, 260); if (ultimoFoco) ultimoFoco.focus(); }
+  function cerrarModal(mo) { mo.classList.remove('vis'); document.body.classList.remove('bloqueado'); if (mo.id === 'modal-cuentas') setTimeout(function () { sobreCuentas.classList.remove('abierto'); }, 300); setTimeout(function () { mo.hidden = true; }, 260); if (ultimoFoco) ultimoFoco.focus(); }
   $$('[data-modal]').forEach(function (b) { b.addEventListener('click', function () { abrirModal(b.getAttribute('data-modal')); }); });
+  var sobreCuentas = $('#btn-cuentas');
+  sobreCuentas.addEventListener('click', function () {
+    if (sobreCuentas.classList.contains('abierto')) return;
+    sobreCuentas.classList.add('abierto');
+    setTimeout(function () { abrirModal('modal-cuentas'); }, reduce ? 0 : 700);
+  });
   $$('.modal').forEach(function (mo) {
     mo.addEventListener('click', function (e) { if (e.target === mo || e.target.closest('.modal-cerrar')) cerrarModal(mo); });
   });
