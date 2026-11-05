@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;1,400&family=Montserrat:wght@500;600&family=Parisienne&family=Playfair+Display:ital,wght@0,400;1,600&display=block">
 <style>
 /* Tarjeta en PDF (1 página, 720 × 1280): la parte de arriba es la que WhatsApp muestra como vista previa */
-:root{--terra:#a8502a;--terra-osc:#7f3818;--terra-tx:#a34a24;--tinta:#3d2a22;--suave:#76594c;--papel:#fbf4ef;--oro:#b48a43}
+:root{--terra:#66744f;--terra-osc:#3f4a37;--terra-tx:#4f5d3e;--tinta:#2e3329;--suave:#646d5c;--papel:#f5f4ec;--oro:#b48a43}
 @page{size:720px 1280px;margin:0}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;width:720px;height:1280px;overflow:hidden}
 body{width:720px;height:1280px;overflow:hidden;position:relative;color:var(--tinta);font-family:"Libre Baskerville",Georgia,serif;
   background:var(--papel) url(assets/papel.webp) 0 0/220px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.marco{position:absolute;inset:22px;border:1.5px solid rgba(168,80,42,.35);border-radius:6px}
-.marco::after{content:"";position:absolute;inset:7px;border:1px solid rgba(168,80,42,.2);border-radius:4px}
+.marco{position:absolute;inset:22px;border:1.5px solid rgba(102,116,79,.35);border-radius:6px}
+.marco::after{content:"";position:absolute;inset:7px;border:1px solid rgba(102,116,79,.2);border-radius:4px}
 .flores{position:absolute;inset:0;overflow:hidden}
 .flor{position:absolute;pointer-events:none}
 .f1{left:-66px;top:-60px;width:232px;transform:rotate(-10deg)}
@@ -29,19 +29,19 @@ body{width:720px;height:1280px;overflow:hidden;position:relative;color:var(--tin
 .sobre-arco>*{position:absolute}
 .sa-back{left:0;bottom:0;width:100%;height:276px}
 .sa-arco{left:24px;top:0;width:352px;height:422px}
-.sa-front{left:0;bottom:0;width:100%;height:276px;filter:drop-shadow(0 -2px 4px rgba(80,28,6,.35))}
+.sa-front{left:0;bottom:0;width:100%;height:276px;filter:drop-shadow(0 -2px 4px rgba(30,38,24,.35))}
 .sa-sello{width:82px;left:159px;top:322px}
 .frase{position:absolute;left:60px;right:60px;top:836px;text-align:center;font-family:"Great Vibes",cursive;font-size:33px;line-height:1.25;color:var(--terra-tx);margin:0}
 .fecha{position:absolute;left:0;right:0;top:922px;display:flex;justify-content:center;align-items:center;gap:22px}
-.fecha .lado{width:150px;text-align:center;font-size:16px;letter-spacing:.24em;padding:10px 0;border-top:1px solid rgba(168,80,42,.55);border-bottom:1px solid rgba(168,80,42,.55)}
+.fecha .lado{width:150px;text-align:center;font-size:16px;letter-spacing:.24em;padding:10px 0;border-top:1px solid rgba(102,116,79,.55);border-bottom:1px solid rgba(102,116,79,.55)}
 .fecha .dia{font-family:"Playfair Display",serif;font-size:66px;line-height:1;color:var(--tinta)}
 .hora{position:absolute;left:0;right:0;top:1004px;text-align:center;font-size:17px;letter-spacing:.28em;margin:0}
 .lugar{position:absolute;left:0;right:0;top:1040px;text-align:center;margin:0}
 .lugar strong{display:block;font-family:"Playfair Display",serif;font-style:italic;font-weight:600;font-size:26px;color:var(--terra-tx)}
 .lugar span{display:block;font-style:italic;font-size:15px;color:var(--suave);margin-top:2px}
 .boton{position:absolute;left:50%;top:1120px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:15px 34px;border-radius:999px;
-  background:var(--terra);color:#fff7ef;text-decoration:none;font-family:"Montserrat",sans-serif;font-weight:600;font-size:20px;letter-spacing:.02em;
-  box-shadow:0 6px 16px rgba(110,45,15,.35);white-space:nowrap}
+  background:var(--terra);color:#f8f8f2;text-decoration:none;font-family:"Montserrat",sans-serif;font-weight:600;font-size:20px;letter-spacing:.02em;
+  box-shadow:0 6px 16px rgba(45,55,35,.35);white-space:nowrap}
 .boton svg{width:24px;height:24px}
 .nota{position:absolute;left:0;right:0;top:1196px;text-align:center;margin:0;font-family:"Montserrat",sans-serif;font-size:13px;color:var(--suave);line-height:1.5}
 </style>
@@ -50,9 +50,9 @@ body{width:720px;height:1280px;overflow:hidden;position:relative;color:var(--tin
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <clipPath id="clipArco"><path d="M3.2 122V51Q3.2 45.2 9 45.2H13.5Q23.2 45.2 23.2 35A26.8 26.8 0 0 1 76.8 35Q76.8 45.2 86.5 45.2H91Q96.8 45.2 96.8 51V122Z"/></clipPath>
-    <linearGradient id="gBolsillo2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c06639"/><stop offset=".55" stop-color="#a9532b"/><stop offset="1" stop-color="#8e4220"/></linearGradient>
-    <linearGradient id="gInterior" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d2d12"/><stop offset="1" stop-color="#874019"/></linearGradient>
-    <linearGradient id="gMarco" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b65d31"/><stop offset="1" stop-color="#8a3f1c"/></linearGradient>
+    <linearGradient id="gBolsillo2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a8863"/><stop offset=".55" stop-color="#66744f"/><stop offset="1" stop-color="#525f40"/></linearGradient>
+    <linearGradient id="gInterior" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#33402a"/><stop offset="1" stop-color="#45523a"/></linearGradient>
+    <linearGradient id="gMarco" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#717f5a"/><stop offset="1" stop-color="#4c5a3c"/></linearGradient>
   </defs>
 </svg>
 <div class="marco"></div>
